@@ -19,8 +19,6 @@ function App() {
   return (
     <div className="App">
       HomePage
-      {/* <p><Link to="/todos">Todos</Link></p>
-      <p><Link to="/albums">Albums</Link></p> */}
       <p>
         <NavLink to="/todos">Todos</NavLink>
       </p>
@@ -30,7 +28,6 @@ function App() {
       <Routes>
         <Route path="/home" element={<Navigate to="/" replace />} />
         <Route path="/" element={<TodoFeature />} />
-        {/* <Route path="/post-list/:id" element={<Navigate to={`/posts/${params.id}`} replace />} /> */}
         <Route path="/todos/*" element={<TodoFeature />}></Route>
         <Route path="/albums" element={<SongFeature />} />
         <Route path="*" element={<NotFound />} />
