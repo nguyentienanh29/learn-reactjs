@@ -9,7 +9,12 @@ import productApi from './api/productApi';
 function App() {
   useEffect(() => {
     const fetchProducts = async () => {
-      const productList = await productApi.getAll();
+      //muốn truyền thêm param
+      const params = {
+        _limit: 10,
+      };
+
+      const productList = await productApi.getAll(params);
       console.log(productList);
     };
 
