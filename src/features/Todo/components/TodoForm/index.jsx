@@ -4,32 +4,39 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import InputField from '../../../../components/form-controls/inputField';
+import { DevTool } from '@hookform/devtools';
 
 TodoForm.propTypes = {
   onSubmit: PropTypes.func, // sẽ thông báo cho cha của nó là sẽ sử dụng hàm này khi user ấn submit
 };
 
 function TodoForm(props) {
-  const schema = yup
-    .object({
-      title: yup.string().required('Please Enter Title'),
-    })
-    .required();
+  // const schema = yup
+  //   .object({
+  //     title: yup.string().required('Please Enter Title'),
+  //   })
+  //   .required();
   const form = useForm({
     defaultValues: {
-      title: '', // khai báo tất cả các biến field ở đây để map field đúng
+      title: ' ', // khai báo tất cả các biến field ở đây để map field đúng
     },
-    resolver: yupResolver(schema),
   });
+
+  // resolver: yupResolver(schema),
+  const { control, handleSubmit } = form;
+  // const { name, ref, onChange, onBlur } = register('title');
 
   const handleSubmitTodoForm = (values) => {
     console.log('TODO FORM:  ', values);
   };
 
   return (
-    <form onSubmit={form.handleSubmit(handleSubmitTodoForm)}>
-      <InputField name="title" label="Todo" form={form} />
-    </form>
+    <div>
+      <form onSubmit={handleSubmit(handleSubmitTodoForm)}>
+        <InputField name="title" label="Todo" form={form} />
+      </form>
+      <DevTool control={control} />
+    </div>
   );
 }
 
