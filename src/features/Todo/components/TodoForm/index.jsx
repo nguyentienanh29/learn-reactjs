@@ -27,7 +27,12 @@ function TodoForm(props) {
   // const { name, ref, onChange, onBlur } = register('title');
 
   const handleSubmitTodoForm = (values) => {
-    console.log('TODO FORM:  ', values);
+    // console.log('TODO FORM:  ', values);
+    const { onSubmit } = props;
+    if (onSubmit) {
+      onSubmit(values);
+    }
+    form.reset();
   };
 
   return (

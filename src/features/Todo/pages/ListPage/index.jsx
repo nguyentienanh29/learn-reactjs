@@ -92,6 +92,16 @@ function ListPage(props) {
 
   const handleToDoFormSubmit = (values) => {
     console.log('Form submit', values);
+    //tạo object newTodo mới
+    const newTodo = {
+      id: todoList.length + 1,
+      title: values.title,
+      status: 'new',
+    };
+
+    //tạo một mãng mới từ mãng cũ
+    const newTodoList = [...todoList, newTodo];
+    setTodoList(newTodoList);
   };
 
   return (
