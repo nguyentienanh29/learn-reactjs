@@ -5,6 +5,7 @@ import NotFound from './components/NotFound';
 import SongFeature from './features/Song';
 import TodoFeature from './features/Todo';
 import productApi from './api/productApi';
+import Counter from './features/Counter';
 
 function App() {
   useEffect(() => {
@@ -31,11 +32,12 @@ function App() {
         <NavLink to="/albums">Albums</NavLink>
       </p>
       <Routes>
-        <Route path="/home" element={<Navigate to="/" replace />} />
+        <Route path="/" element={<Counter />} />
+        {/* <Route path="/home" element={<Navigate to="/" replace />} />
         <Route path="/" element={<TodoFeature />} />
         <Route path="/todos/*" element={<TodoFeature />}></Route>
         <Route path="/albums" element={<SongFeature />} />
-        <Route path="*" element={<NotFound />} />
+        <Route path="*" element={<NotFound />} /> */}
       </Routes>
     </div>
   );

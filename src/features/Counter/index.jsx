@@ -1,14 +1,29 @@
-import React, { useState } from "react";
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { decrease, increase } from './counterSlice';
 
 Counter.propTypes = {};
 
 function Counter(props) {
-  const [count, setCount] = useState(0);
+  const countState = useSelector((state) => state.count);
+  const dispatch = useDispatch();
+
+  const handleIncrease = () => {
+    const action = increase();
+    dispatch(action);
+  };
+  const handleDecrease = () => {
+    const action = decrease();
+    dispatch(action);
+  };
+
   return (
     <div>
-      {count}ß
-      <button onClick={() => setCount((x) => x + 1)}>Increase</button>
-      <div>Test 1234</div>
+      Counter: {countState}
+      <div>
+        <button onClick={handleIncrease}>Increase</button>
+        <button onClick={handleDecrease}>Increase</button>
+      </div>
     </div>
   );
 }

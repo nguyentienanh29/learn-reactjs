@@ -1,10 +1,7 @@
-import { yupResolver } from '@hookform/resolvers/yup';
+import { DevTool } from '@hookform/devtools';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import * as yup from 'yup';
-import InputField from '../../../../components/form-controls/inputField';
-import { DevTool } from '@hookform/devtools';
 
 TodoForm.propTypes = {
   onSubmit: PropTypes.func, // sẽ thông báo cho cha của nó là sẽ sử dụng hàm này khi user ấn submit
