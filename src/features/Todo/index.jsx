@@ -13,7 +13,16 @@ function TodoFeature(props) {
       <Routes>
         <Route path="list" element={<ListPage />} />
         <Route path="detail" element={<DetailPage />} />
-        <Route path="*" element={<NotFound />} />
+        <Route
+          path="*"
+          element={
+            <div>
+              <ListPage />
+              <DetailPage />
+            </div>
+          }
+        />
+        {/* <Route path="*" element={<NotFound />} /> */}
       </Routes>
     </div>
   );

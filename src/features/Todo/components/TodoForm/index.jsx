@@ -1,4 +1,5 @@
 import { DevTool } from '@hookform/devtools';
+import InputField from 'components/form-controls/inputField';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { useForm } from 'react-hook-form';

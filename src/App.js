@@ -1,11 +1,11 @@
 //import './App.css';
-import React, { useEffect } from 'react';
-import { NavLink, Navigate, Route, Routes } from 'react-router-dom';
-import NotFound from './components/NotFound';
-import SongFeature from './features/Song';
-import TodoFeature from './features/Todo';
+import { useEffect } from 'react';
+import { NavLink, Route, Routes } from 'react-router-dom';
 import productApi from './api/productApi';
-import Counter from './features/Counter';
+import Header from './components/Header';
+import Counter from './features/Counter/index';
+import TodoFeature from 'features/Todo/index';
+import SongFeature from 'features/Song/index';
 
 function App() {
   useEffect(() => {
@@ -24,19 +24,13 @@ function App() {
 
   return (
     <div className="App">
-      HomePage
-      <p>
-        <NavLink to="/todos">Todos</NavLink>
-      </p>
-      <p>
-        <NavLink to="/albums">Albums</NavLink>
-      </p>
+      <Header />
       <Routes>
         <Route path="/" element={<Counter />} />
-        {/* <Route path="/home" element={<Navigate to="/" replace />} />
-        <Route path="/" element={<TodoFeature />} />
         <Route path="/todos/*" element={<TodoFeature />}></Route>
         <Route path="/albums" element={<SongFeature />} />
+        {/* <Route path="/home" element={<Navigate to="/" replace />} />
+        <Route path="/" element={<TodoFeature />} />
         <Route path="*" element={<NotFound />} /> */}
       </Routes>
     </div>
