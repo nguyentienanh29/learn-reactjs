@@ -33,13 +33,13 @@ function PasswordField(props) {
       <Controller
         name={name}
         control={form.control}
-        rules={{
-          required: { value: true, message: `${name} is required` },
-          minLength: {
-            value: 6,
-            message: 'Password must be at least 6 characters long',
-          },
-        }}
+        // rules={{
+        //   required: { value: true, message: `${name} is required` },
+        //   minLength: {
+        //     value: 6,
+        //     message: 'Password must be at least 6 characters long',
+        //   },
+        // }}
         render={({ field }) => (
           <OutlinedInput
             {...field}

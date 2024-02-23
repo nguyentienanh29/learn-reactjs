@@ -25,13 +25,13 @@ function InputField(props) {
     <Controller
       name={name}
       control={form.control}
-      rules={{
-        required: { value: true, message: `${name} is required` },
-        // pattern: {
-        //   value: /^[^@ ]+@[^@ ]+\.[^@ .]{2,}$/,
-        //   message: 'Invalid email format',
-        // },
-      }}
+      // rules={{
+      //   required: { value: true, message: `${name} is required` },
+      //   // pattern: {
+      //   //   value: /^[^@ ]+@[^@ ]+\.[^@ .]{2,}$/,
+      //   //   message: 'Invalid email format',
+      //   // },
+      // }}
       render={({ field }) => (
         <TextField
           {...field}

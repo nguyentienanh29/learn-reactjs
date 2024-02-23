@@ -36,30 +36,22 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-RegisterForm.propTypes = {
+LoginForm.propTypes = {
   onSubmit: PropTypes.func, // sẽ thông báo cho cha của nó là sẽ sử dụng hàm này khi user ấn submit
 };
 
-function RegisterForm(props) {
+function LoginForm(props) {
   const classes = useStyles();
 
   const schema = yup.object().shape({
-    fullname: yup.string().required('Please Enter FullName'),
-    email: yup.string().required('Please Enter Email'),
-    password: yup.string().required('Please Enter Password').min(6, 'Password must be at least 6 characters long'),
-    retypePassword: yup
-      .string()
-      .required('Please Enter Password')
-      .min(6, 'Password must be at least 6 characters long')
-      .oneOf([yup.ref('password')], 'Password does not match'),
+    identifier: yup.string().required('Please Enter Email'),
+    password: yup.string().required('Please Enter Password'),
   });
 
   const form = useForm({
     defaultValues: {
-      fullname: '',
-      email: '',
+      identifier: '',
       password: '',
-      retypePassword: '',
     },
     resolver: yupResolver(schema),
   });
@@ -90,14 +82,13 @@ function RegisterForm(props) {
       </Avatar>
 
       <Typography className={classes.title} component="h3" variant="h5">
-        Create An Account
+        Sign In
       </Typography>
 
       <form onSubmit={handleSubmit(handleSubmitTodoForm)}>
-        <InputField name="fullname" label="Full Name" form={form} />
-        <InputField name="email" label="Email" form={form} />
+        <InputField name="identifier" label="Email" form={form} />
         <PasswordField name="password" label="Password" form={form} />
-        <PasswordField name="retypePassword" label="Retype Password" form={form} />
+
         <Button
           disabled={isSubmitting}
           type="submit"
@@ -106,7 +97,7 @@ function RegisterForm(props) {
           fullWidth
           className={classes.submit}
         >
-          Create an account
+          Sign In
         </Button>
       </form>
       <DevTool control={control} />
@@ -114,4 +105,4 @@ function RegisterForm(props) {
   );
 }
 
-export default RegisterForm;
+export default LoginForm;

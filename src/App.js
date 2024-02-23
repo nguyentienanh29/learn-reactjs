@@ -1,11 +1,11 @@
 //import './App.css';
+import SongFeature from 'features/Song/index';
+import TodoFeature from 'features/Todo/index';
 import { useEffect } from 'react';
-import { NavLink, Route, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import productApi from './api/productApi';
 import Header from './components/Header';
 import Counter from './features/Counter/index';
-import TodoFeature from 'features/Todo/index';
-import SongFeature from 'features/Song/index';
 
 function App() {
   useEffect(() => {
