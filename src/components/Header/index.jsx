@@ -1,4 +1,4 @@
-import { Box } from '@material-ui/core';
+import { Box, Menu, MenuItem } from '@material-ui/core';
 import AppBar from '@material-ui/core/AppBar';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
@@ -11,8 +11,9 @@ import CodeIcon from '@material-ui/icons/Code';
 import { IconButton } from '@mui/material';
 import Login from 'features/Auth/components/Login';
 import Register from 'features/Auth/components/Register';
+import { logout } from 'features/Auth/userSlice';
 import { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link, NavLink } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
@@ -45,10 +46,12 @@ const MODE = {
 };
 
 export default function Header() {
+  const dispatch = useDispatch();
   const loggedInUser = useSelector((state) => state.user.current);
   const isLogin = !!loggedInUser.id;
   const [open, setOpen] = useState(false);
   const [mode, setMode] = useState(MODE.LOGIN);
+  const [anchorEl, setAnchorEl] = useState(null);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -60,6 +63,20 @@ export default function Header() {
     } else {
       setOpen(false);
     }
+  };
+
+  const handleUserClick = (e) => {
+    setAnchorEl(e.currentTarget);
+  };
+
+  const handleLogoutClick = () => {
+    const action = logout();
+    dispatch(action);
+    setAnchorEl(null);
+  };
+
+  const handleCloseMenu = () => {
+    setAnchorEl(null);
   };
 
   const classes = useStyles();
@@ -91,12 +108,31 @@ export default function Header() {
           )}
 
           {isLogin && (
-            <IconButton color="inherit">
+            <IconButton color="inherit" onClick={handleUserClick}>
               <AccountCircle />
             </IconButton>
           )}
         </Toolbar>
       </AppBar>
+
+      <Menu
+        keepMounted
+        anchorEl={anchorEl}
+        open={Boolean(anchorEl)}
+        onClose={handleCloseMenu}
+        anchorOrigin={{
+          vertical: 'bottom',
+          horizontal: 'right',
+        }}
+        transformOrigin={{
+          vertical: 'top',
+          horizontal: 'right',
+        }}
+        getContentAnchorEl={null}
+      >
+        <MenuItem onClick={handleCloseMenu}>My account</MenuItem>
+        <MenuItem onClick={handleLogoutClick}>Logout</MenuItem>
+      </Menu>
 
       <Dialog disableEscapeKeyDown open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
         <DialogContent>

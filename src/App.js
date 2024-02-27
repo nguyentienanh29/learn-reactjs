@@ -1,11 +1,11 @@
 //import './App.css';
+import ProductFeature from 'features/Product';
 import SongFeature from 'features/Song/index';
 import TodoFeature from 'features/Todo/index';
 import { useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import productApi from './api/productApi';
 import Header from './components/Header';
-import Counter from './features/Counter/index';
 
 function App() {
   useEffect(() => {
@@ -26,9 +26,10 @@ function App() {
     <div className="App">
       <Header />
       <Routes>
-        <Route path="/" element={<Counter />} />
         <Route path="/todos/*" element={<TodoFeature />}></Route>
         <Route path="/albums" element={<SongFeature />} />
+        <Route path="/products" element={<ProductFeature />} />
+        {/* <Route path="/" element={<Counter />} /> */}
         {/* <Route path="/home" element={<Navigate to="/" replace />} />
         <Route path="/" element={<TodoFeature />} />
         <Route path="*" element={<NotFound />} /> */}

@@ -36,7 +36,14 @@ const userSlice = createSlice({
     //... có state gì thì thêm vào
   },
   //reducers tự động generate action type
-  reducers: {},
+  reducers: {
+    logout(state, action) {
+      //clear Local Storage
+      localStorage.removeItem(StorageKeys.USER);
+      localStorage.removeItem(StorageKeys.TOKEN);
+      state.current = {}; //reset state
+    },
+  },
   //extraReducers thì tự mình phải định nghĩa cho action type
   extraReducers: (builder) => {
     builder.addCase(
@@ -53,5 +60,6 @@ const userSlice = createSlice({
   },
 });
 
-const { reducer } = userSlice;
+const { reducer, actions } = userSlice;
+export const { logout } = actions;
 export default reducer;
